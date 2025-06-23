@@ -4,7 +4,7 @@ provider "aws" {
 
 resource "aws_instance" "my_instance" {
   ami           = "ami-09d8ed8255877048d"
-  instance_type = "t3.micro"
+  instance_type = "t1.micro"
 
   metadata_options {
     http_endpoint = "enabled"  # 메타데이터 서비스 사용
