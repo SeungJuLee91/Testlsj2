@@ -2,11 +2,16 @@ provider "aws" {
   region = "ap-northeast-1" # 도쿄 리전으로 설정
 }
 
-resource "aws_instance" "my_instance" { # ”타입” “terraform구성파일에서 참조할 이름”
-  ami           = "ami-09d8ed8255877048d" # 원하는 AMI ID로 변경
+resource "aws_instance" "my_instance" {
+  ami           = "ami-09d8ed8255877048d"
   instance_type = "t3.micro"
 
+  metadata_options {
+    http_endpoint = "enabled"  # 메타데이터 서비스 사용
+    http_tokens   = "required" # IMDSv2만 허용
+  }
+
   tags = {
-    Name = "TerraformTest" # 실제 인스턴스 이름
+    Name = "TerraformTest"
   }
 }
