@@ -19,7 +19,15 @@ pipeline {
                             docker.image('bridgecrew/checkov:latest').inside("--entrypoint=''") {
                               unstash 'source'
                               try {
-                                  sh 'checkov -d . --use-enforcement-rules -o cli -o junitxml --output-file-path console,results.xml --bc-api-key ${pc_user}::${pc_password} --repo-id  SeungJuLee91/Testlsj2 --branch main'
+                                  sh '''
+                                  checkov -d . \
+                                    --use-enforcement-rules \    # 조직 정책 적용
+                                    -o cli -o junitxml \         # 출력: CLI + JUnit XML
+                                    --output-file-path console,results.xml \  # 출력 경로
+                                    --bc-api-key ${pc_user}::${pc_password} \ # 인증 정보
+                                    --repo-id SeungJuLee91/Testlsj2 \         # 리포 ID
+                                    --branch main                              # 브랜치 지정
+                                '''
                                   junit skipPublishingChecks: true, testResults: 'results.xml'
                               } catch (err) {
                                   junit skipPublishingChecks: true, testResults: 'results.xml'
