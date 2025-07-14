@@ -20,7 +20,7 @@ pipeline {
                               unstash 'source'
                               try {
                                   sh '''
-                                  checkov -d . \
+                                  checkov -d . \ 
                                     --use-enforcement-rules \    # 조직 정책 적용
                                     -o cli -o junitxml \         # 출력: CLI + JUnit XML
                                     --output-file-path console,results.xml \  # 출력 경로
