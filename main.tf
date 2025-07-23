@@ -7,7 +7,7 @@ resource "aws_instance" "my_instance" {
   instance_type = "t3.micro"
 
   metadata_options {
-    http_endpoint = "enabled"  # 메타데이터 서비스 사용
+    http_endpoint = "enabled"  # 메타데이터 서비스 사용 
     http_tokens   = "required" # IMDSv2만 허용
   }
 
