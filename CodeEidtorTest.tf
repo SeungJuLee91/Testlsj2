@@ -59,4 +59,5 @@ resource "aws_ssm_parameter" "leaked_secret" {
   name  = "/example/secret"
   type  = "SecureString"
   value = "my-super-secret-password-regex" #  의도적으로 하드코딩된 시크릿
+  value2 = "test"
 }
